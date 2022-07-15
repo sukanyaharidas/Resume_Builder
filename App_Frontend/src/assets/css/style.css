@@ -1319,6 +1319,10 @@ section {
   font-size: 14px;
   background: #37517e;
 }
+
+#footer .footer-top{
+  box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+}
 #footer .footer-newsletter {
   padding: 50px 0;
   background: #f3f5fa;
