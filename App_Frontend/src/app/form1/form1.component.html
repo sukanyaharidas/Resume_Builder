@@ -68,8 +68,8 @@
 
 
 
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Education Details</ng-template>
 
         <div class="container">
@@ -78,19 +78,19 @@
               <mat-form-field appearance="fill">
   
                 <mat-label>Qualification</mat-label>
-                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                <input matInput placeholder="Last name, First name" formControlName="secondCtrl" required>
                
               </mat-form-field><br>
               <mat-form-field appearance="fill">
   
                 <mat-label>Institution</mat-label>
-                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+                <input matInput placeholder="Address" formControlName="secondCtrl" required>
                
               </mat-form-field>
               <mat-form-field appearance="fill">
   
                 <mat-label>Course</mat-label>
-                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+                <input matInput placeholder="Address" formControlName="secondCtrl" required>
                
               </mat-form-field>
             </div>
@@ -98,13 +98,13 @@
               <mat-form-field appearance="fill">
   
                 <mat-label>Year Of Completion</mat-label>
-              <input matInput placeholder="Email ID" formControlName="firstCtrl" required>
+              <input matInput placeholder="Email ID" formControlName="secondCtrl" required>
               </mat-form-field><br>
               
               <mat-form-field appearance="fill">
   
                 <mat-label>Percentage</mat-label>
-                <input matInput placeholder="Pin Code" formControlName="firstCtrl" required>
+                <input matInput placeholder="Pin Code" formControlName="secondCtrl" required>
                
               </mat-form-field><br>
             </div>
@@ -124,8 +124,8 @@
 
 
 
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>Work Experience</ng-template>
         <div class="container">
           <div class="row">
@@ -133,19 +133,19 @@
               <mat-form-field appearance="fill">
       
                 <mat-label>Job Title</mat-label>
-                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                <input matInput placeholder="Last name, First name" formControlName="thirdCtrl" required>
                
               </mat-form-field><br>
               <mat-form-field appearance="fill">
       
                 <mat-label>Company Name</mat-label>
-                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+                <input matInput placeholder="Address" formControlName="thirdCtrl" required>
                
               </mat-form-field>
               <mat-form-field appearance="fill">
       
                 <mat-label>End Date</mat-label>
-                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+                <input matInput placeholder="Address" formControlName="thirdCtrl" required>
                
               </mat-form-field>
             </div>
@@ -153,13 +153,13 @@
               <mat-form-field appearance="fill">
       
                 <mat-label>Job Description</mat-label>
-              <input matInput placeholder="Email ID" formControlName="firstCtrl" required>
+              <input matInput placeholder="Email ID" formControlName="thirdCtrl" required>
               </mat-form-field><br>
               
               <mat-form-field appearance="fill">
       
                 <mat-label>Start Date</mat-label>
-                <input matInput placeholder="Pin Code" formControlName="firstCtrl" required>
+                <input matInput placeholder="Pin Code" formControlName="thirdCtrl" required>
                
               </mat-form-field><br>
             </div>
@@ -179,15 +179,15 @@
 
 
 
-        <mat-step [stepControl]="secondFormGroup" label="Skills">
-          <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="fourthFormGroup" label="Skills">
+          <form [formGroup]="fourthFormGroup">
           <div class="container">
             <div class="row">
               <div class="col-md">
                 <mat-form-field appearance="fill">
     
                   <mat-label>Skills</mat-label>
-                  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                  <input matInput placeholder="Last name, First name" formControlName="fourthCtrl" required>
                  
                 </mat-form-field><br>
                
