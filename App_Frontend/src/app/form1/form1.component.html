@@ -1,0 +1,230 @@
+
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Personal Details</ng-template>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md">
+              <mat-form-field appearance="fill">
+
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+               
+              </mat-form-field><br>
+              <mat-form-field appearance="fill">
+
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+               
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+
+                <mat-label>Upload image</mat-label>
+                <input matInput placeholder="Upload " formControlName="firstCtrl" required>
+               
+              </mat-form-field><br>
+            </div>
+            <div class="col-md">
+              <mat-form-field appearance="fill">
+
+                <mat-label>Email ID</mat-label>
+              <input matInput placeholder="Email ID" formControlName="firstCtrl" required>
+              </mat-form-field><br>
+              
+              <mat-form-field appearance="fill">
+
+                <mat-label>Pin Code</mat-label>
+                <input matInput placeholder="Pin Code" formControlName="firstCtrl" required>
+               
+              </mat-form-field><br>
+            </div>
+            <div class="col-md">
+              <mat-form-field appearance="fill">
+
+                <mat-label>Phone</mat-label>
+                <input matInput placeholder="Phone Number" formControlName="firstCtrl" required>
+               
+              </mat-form-field><br>
+
+              <mat-form-field appearance="fill">
+
+                <mat-label>City</mat-label>
+                <input matInput placeholder="Your City" formControlName="firstCtrl" required>
+               
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+         
+        <div>
+          <button class="btn btn-success float-end" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+
+
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Education Details</ng-template>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md">
+              <mat-form-field appearance="fill">
+  
+                <mat-label>Qualification</mat-label>
+                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+               
+              </mat-form-field><br>
+              <mat-form-field appearance="fill">
+  
+                <mat-label>Institution</mat-label>
+                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+               
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+  
+                <mat-label>Course</mat-label>
+                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+               
+              </mat-form-field>
+            </div>
+            <div class="col-md">
+              <mat-form-field appearance="fill">
+  
+                <mat-label>Year Of Completion</mat-label>
+              <input matInput placeholder="Email ID" formControlName="firstCtrl" required>
+              </mat-form-field><br>
+              
+              <mat-form-field appearance="fill">
+  
+                <mat-label>Percentage</mat-label>
+                <input matInput placeholder="Pin Code" formControlName="firstCtrl" required>
+               
+              </mat-form-field><br>
+            </div>
+            <div class="col-md">
+              
+            </div>
+          </div>
+        </div>
+         
+        <div>
+          <button class="btn btn-success float-end" matStepperNext>Next</button>
+          <button class="btn btn-primary" matStepperPrevious>Back</button>
+
+        </div>
+      </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Work Experience</ng-template>
+        <div class="container">
+          <div class="row">
+            <div class="col-md">
+              <mat-form-field appearance="fill">
+      
+                <mat-label>Job Title</mat-label>
+                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+               
+              </mat-form-field><br>
+              <mat-form-field appearance="fill">
+      
+                <mat-label>Company Name</mat-label>
+                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+               
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+      
+                <mat-label>End Date</mat-label>
+                <input matInput placeholder="Address" formControlName="firstCtrl" required>
+               
+              </mat-form-field>
+            </div>
+            <div class="col-md">
+              <mat-form-field appearance="fill">
+      
+                <mat-label>Job Description</mat-label>
+              <input matInput placeholder="Email ID" formControlName="firstCtrl" required>
+              </mat-form-field><br>
+              
+              <mat-form-field appearance="fill">
+      
+                <mat-label>Start Date</mat-label>
+                <input matInput placeholder="Pin Code" formControlName="firstCtrl" required>
+               
+              </mat-form-field><br>
+            </div>
+            <div class="col-md">
+              
+            </div>
+          </div>
+        </div>
+         
+        <div>
+          <button class="btn btn-success float-end" matStepperNext>Next</button>
+          <button class="btn btn-primary" matStepperPrevious>Back</button>
+
+        </div>
+      </form>
+    </mat-step>
+
+
+
+        <mat-step [stepControl]="secondFormGroup" label="Skills">
+          <form [formGroup]="firstFormGroup">
+          <div class="container">
+            <div class="row">
+              <div class="col-md">
+                <mat-form-field appearance="fill">
+    
+                  <mat-label>Skills</mat-label>
+                  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                 
+                </mat-form-field><br>
+               
+              </div>
+              <div class="col-md">
+                
+              </div>
+            </div>
+          </div>
+           <br><br>
+          <div>
+            <button class="btn btn-primary" matStepperPrevious>Back</button>
+            <button class="btn btn-success float-end"type="submit"> Submit  </button>
+          </div>
+  
+        </form>
+        </mat-step>
+  
+
+    
+
+
+
+    <!-- <mat-step>
+      <ng-template matStepLabel>Work Experience</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button><br>
+        <button mat-button style="text-align: right;" matStepperPrevious>Submit</button>
+      </div>
+    </mat-step> -->
+   
+
+
+    
+
+
+  </mat-stepper>
+  
