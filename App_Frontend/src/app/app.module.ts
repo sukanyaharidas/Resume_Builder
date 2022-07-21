@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChooseTemmplateComponent } from './choose-temmplate/choose-temmplate.component';
+import { Template3Component } from './template3/template3.component';
+// import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     LoginComponent,
     Template1Component,
-    Form1Component
+    Form1Component,
+    ChooseTemmplateComponent,
+    Template3Component
+    // ResumePreviewComponent
   ],
   imports: [
     BrowserModule,
