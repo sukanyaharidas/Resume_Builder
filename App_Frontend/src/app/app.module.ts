@@ -15,6 +15,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PersonalDetailsComponent } from './form1/personal-details/personal-details.component';
+import { EducationDetailsComponent } from './form1/education-details/education-details.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { WorkexperienceComponent } from './form1/workexperience/workexperience.component';
+import { SkillsComponent } from './form1/skills/skills.component';
+import { HobbiesComponent } from './form1/hobbies/hobbies.component';
+
 
 
 @NgModule({
@@ -25,7 +35,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     LoginComponent,
     Template1Component,
-    Form1Component
+    Form1Component,
+    PersonalDetailsComponent,
+    EducationDetailsComponent,
+    WorkexperienceComponent,
+    SkillsComponent,
+    HobbiesComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +51,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatToolbarModule
+
+   
   ],
   exports: [
     MatStepperModule
