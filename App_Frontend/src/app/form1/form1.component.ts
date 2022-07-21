@@ -17,7 +17,7 @@ import { WorkexperienceComponent } from './workexperience/workexperience.compone
 })
 export class Form1Component implements OnInit {
 
-  isLinear=false;
+  isLinear=true;
   public personalDetailsForm: FormGroup |any;
   public educationDetailsForm: FormGroup |any;
   public workExperienceDetailsForm: FormGroup |any;
