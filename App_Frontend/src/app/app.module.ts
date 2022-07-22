@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChooseTemmplateComponent } from './choose-temmplate/choose-temmplate.component';
 import { Template3Component } from './template3/template3.component';
+import { Template2Component } from './template2/template2.component';
 // import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 
 
@@ -30,7 +31,8 @@ import { Template3Component } from './template3/template3.component';
     Template1Component,
     Form1Component,
     ChooseTemmplateComponent,
-    Template3Component
+    Template3Component,
+    Template2Component
     // ResumePreviewComponent
   ],
   imports: [
