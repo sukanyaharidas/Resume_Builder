@@ -136,5 +136,12 @@
     .page-break {
       padding-top: 5rem;
       page-break-before: always; } }
+
+      .mb-3{ margin-top: 30px;}
+
+      .btnbtn{
+        border-radius: 40px;
+        margin:2px;
+      }
     
   

@@ -28,7 +28,11 @@ import { Template4Component } from './template4/template4.component';
 import { AdminUIComponent } from './admin-ui/admin-ui.component';
 import { UserUIComponent } from './user-ui/user-ui.component';
 import { LoggedINheaderComponent } from './logged-inheader/logged-inheader.component';
-
+import { ChooseTemmplateComponent } from './choose-temmplate/choose-temmplate.component';
+import { Template3Component } from './template3/template3.component';
+import { Template2Component } from './template2/template2.component';
+import { SignupComponent } from './signup/signup.component';
+// import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 
 
 @NgModule({
@@ -48,7 +52,12 @@ import { LoggedINheaderComponent } from './logged-inheader/logged-inheader.compo
     Template4Component,
     AdminUIComponent,
     UserUIComponent,
-    LoggedINheaderComponent
+    LoggedINheaderComponent,
+    ChooseTemmplateComponent,
+    Template3Component,
+    Template2Component,
+    SignupComponent
+    // ResumePreviewComponent
   ],
   imports: [
     BrowserModule,

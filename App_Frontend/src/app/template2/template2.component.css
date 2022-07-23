@@ -232,3 +232,24 @@ body{
 	height: 90%;
 	background: #9153c9;
 }
+
+.btnbtn{
+	border-color: greenyellow;
+	border-style: groove;
+	background-color: transparent;
+	border-radius: 40px;
+	
+	margin-top: 0;
+	margin-right: 3px;
+	font: bolder;
+	color: white;
+	padding: 5px;
+	margin-top: -5px;
+  }
+
+  .btnbtn :hover{
+	
+	color: yellow;
+	font-size: 40px;
+	
+  }
