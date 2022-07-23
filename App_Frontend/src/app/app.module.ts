@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatStepperModule} from '@angular/material/stepper';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChooseTemmplateComponent } from './choose-temmplate/choose-temmplate.component';
 import { Template3Component } from './template3/template3.component';
 import { Template2Component } from './template2/template2.component';
+import { SignupComponent } from './signup/signup.component';
 // import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 
 
@@ -32,7 +32,8 @@ import { Template2Component } from './template2/template2.component';
     Form1Component,
     ChooseTemmplateComponent,
     Template3Component,
-    Template2Component
+    Template2Component,
+    SignupComponent
     // ResumePreviewComponent
   ],
   imports: [
