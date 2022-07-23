@@ -74,13 +74,13 @@ ngOnInit(): void {
     });
  }
 
- public addPersonalDetailsItem():void{
-  this.personalDetailsArray?.push( PersonalDetailsComponent.addPersonalDetails());
- }
+//  public addPersonalDetailsItem():void{
+//   this.personalDetailsArray?.push( PersonalDetailsComponent.addPersonalDetails());
+//  }
 
- public deletepersonalDetails(index:number):void{
- this.personalDetailsArray?.removeAt(index);
- }  
+//  public deletepersonalDetails(index:number):void{
+//  this.personalDetailsArray?.removeAt(index);
+//  }  
 
 
 //  education details functions
@@ -157,7 +157,7 @@ public addHobbyDetailsItem():void{
 // skilldetailssmodel=new skilldetailsmodel("")
 // hobbydetailsmodel =new hobbydetailesmodel("")
  Details:any={
-  personal:[],
+  personal:{},
   educational:[],
   workexp:[],
   skills:[],

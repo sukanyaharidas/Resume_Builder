@@ -1,17 +1,17 @@
 <div class="login">
     <div class="form">
-      <form class="login-form" #userlogin = "ngForm" (ngSubmit)="userVerify()">
+      <form class="login-form" [formGroup]="form" (ngSubmit)="userVerify()">
         <span class="material-icons">lock</span>
+        
         <div>
-            <!-- <label for="email">Email</label> -->
-            <input type="text" class="form-control"  [(ngModel)]="User.username" name="uname" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
-            <small class="text-danger" [class.d-none] = "email.valid || email.touched">Enter valid Email</small>
-        </div>
+          <input type="text" class="form-control" formControlName="username"  name="username" required/>
+          <small class="error text-danger" *ngIf="form.get('username').invalid && form.get('username').touched">Username Required</small>
+      </div>
         <div>
-            <input type="password" class="form-control" [(ngModel)]="User.password"  name="password" #pwd="ngModel" [class.is-invalid]="pwd.invalid && pwd.touched" required/>
-            <small class="text-danger" [class.d-none] = "pwd.valid || pwd.touched">Enter a Valid Password</small>
+            <input type="password" class="form-control" formControlName="password"  name="password" required/>
+            <small class="error text-danger" *ngIf="form.get('password').invalid && form.get('password').touched">Password Required</small>
         </div>
-        <button [disabled]="userlogin.form.invalid">login</button>
+        <button [disabled]="form.invalid">login</button>
       </form>  
     </div>
   </div>

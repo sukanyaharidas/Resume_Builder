@@ -1,28 +1,28 @@
 <div class="login">
     <div class="form">
         <h1>Sign Up</h1>
-      <form class="login-form" #userReg = "ngForm" (ngSubmit)="registerVerify()">
+      <form class="login-form" [formGroup]="form" (ngSubmit)="registerVerify()">
         <!-- <span class="material-icons">lock</span> -->
         <div>
             <!-- <label for="email">Email</label> -->
-            <input type="text" class="form-control" [(ngModel)]="RegisterForm.firstName" name="fname" #frName="ngModel" [class.is-invalid]="frName.invalid && frName.touched" required pattern="[a-z][A-Z]" maxlength="6">
-            <small class="text-danger" [class.d-none] = "frName.valid || frName.touched">Enter Name</small>
-        </div>
-        <div>
+            <input type="text" class="form-control"  id="form3Example1cg"  name="fname" formControlName="fname" placeholder="Your Name"  required >
+            <small class="error text-danger" *ngIf="form.get('fname').invalid && form.get('fname').touched">Full Name Required</small>
+          </div>
+          <div>
             <!-- <label for="email">Email</label> -->
-            <input type="email" class="form-control" [(ngModel)]="RegisterForm.email" name="emaild" #emailid="ngModel" [class.is-invalid]="emailid.invalid && emailid.touched" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
-            <small class="text-danger" [class.d-none] = "emailid.valid || emailid.touched">Enter valid Email</small>
-        </div>
+            <input type="email" class="form-control"  formControlName="emailid" >
+            <small class="error text-danger" *ngIf="form.get('emailid').invalid && form.get('emailid').touched">Email Required</small>
+          </div>
         <div>
-            <input type="password" class="form-control" [(ngModel)]="RegisterForm.password"  name="password" #pwd="ngModel" [class.is-invalid]="pwd.invalid && pwd.touched" required minlength="6" maxlength="12"/>
+            <input type="password" class="form-control" formControlName="password" />
             <!-- <small>password length<br> must be above<br>6 charecters</small> -->
-            <small class="text-danger" [class.d-none] = "pwd.valid || pwd.touched" >Enter a Valid Password</small>
-        </div>
-        <div>
+            <small class="error text-danger" *ngIf="form.get('password').invalid && form.get('password').touched">Password Required</small>
+          </div>
+        <!-- <div>
             <input type="password" class="form-control" [(ngModel)]="RegisterForm.cnfPassword"  name="cnfpassword" #cnfpwd="ngModel" [class.is-invalid]="cnfpwd.invalid && cnfpwd.touched" required minlength="6" maxlength="12"/>
             <small class="text-danger" [class.d-none] = "cnfpwd.valid || cnfpwd.touched" >Please Confirm Password</small>
-        </div>
-        <button [disabled]="userReg.form.invalid">login</button>
+        </div> -->
+        <button [disabled]="form.invalid">login</button>
       </form>  
     </div>
   </div>

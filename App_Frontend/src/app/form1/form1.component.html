@@ -6,9 +6,9 @@
       <ng-template matStepLabel>Personal Details</ng-template>
           <!-- <app-personal-details *ngFor="let chilForm of personalDetailsForm.get('personalDetails').controls"
           [childForm]="chilForm"></app-personal-details> -->
-          <app-personal-details *ngFor="let childForm of personalDetailsArray.controls;let i=index"
-          [childForm]="childForm" [arrayIndex]="i" [totalPersonalDetails]="personalDetailsArray.length" (deletePersonalDetailsEvent)="deletepersonalDetails($event)" ></app-personal-details>
-          <button class="btn " [disabled]="!personalDetailsArray.valid" (click)="addPersonalDetailsItem()" style="margin-left:5.9em;color:white;  background-color:#0a0a23;" ><b>+</b> Add new details</button>
+          <app-personal-details *ngFor="let childForm of personalDetailsArray.controls;"
+          [childForm]="childForm" ></app-personal-details>
+          <!-- <button class="btn " [disabled]="!personalDetailsArray.valid" (click)="addPersonalDetailsItem()" style="margin-left:5.9em;color:white;  background-color:#0a0a23;" ><b>+</b> Add new details</button> -->
 
 
     </form>

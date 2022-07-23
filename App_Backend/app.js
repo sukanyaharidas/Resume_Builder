@@ -6,7 +6,7 @@ const   resumecred  = require('./src/model/models/resumemodel')
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const app = new express();
-const port = process.env.PORT
+const port = 3000;
 
 dotenv.config();
 app.use(cors());

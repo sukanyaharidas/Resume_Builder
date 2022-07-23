@@ -45,9 +45,9 @@ public deletePersonalDetailsEvent:EventEmitter<number>=new EventEmitter<number>(
   }
 
 
-  public deletePersonalDetails(index:number):void{
-    this.deletePersonalDetailsEvent.next(index);
-  }
+  // public deletePersonalDetails(index:number):void{
+  //   this.deletePersonalDetailsEvent.next(index);
+  // }
 
   uploadFileEvt(imgFile: any) {
     if (imgFile.target.files) {
