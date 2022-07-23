@@ -9,14 +9,20 @@ import { PersonalDetailsComponent } from './personal-details/personal-details.co
 import { SkillsComponent } from './skills/skills.component';
 import { WorkexperienceComponent } from './workexperience/workexperience.component';
 
+import { educationaldetailsmodel } from 'src/models/educationaldetailsmodel';
+import { workexperiencedetailsmodel } from 'src/models/workexperiencemodel';
+import { personaldetailsmodel } from 'src/models/personaldetailsmodel';
+import { hobbydetailesmodel } from 'src/models/hobbiesmodel';
+import { skilldetailsmodel } from 'src/models/skillsmodel';
 
+import { ResumeserviceService } from '../resumeservice.service';
 @Component({
   selector: 'app-form1',
   templateUrl: './form1.component.html',
   styleUrls: ['./form1.component.css']
 })
 export class Form1Component implements OnInit {
-
+ 
   isLinear=true;
   public personalDetailsForm: FormGroup |any;
   public educationDetailsForm: FormGroup |any;
@@ -47,7 +53,7 @@ get personalDetailsArray(): FormArray{
  }
 
 
-  constructor(){}
+  constructor(public resumeservice:ResumeserviceService){}
     
 ngOnInit(): void {
   this.generatePersonalDetailsForm();
@@ -145,14 +151,37 @@ public addHobbyDetailsItem():void{
   this.hobbyDetailsArray?.removeAt(index);
  }
 
+// educationaldetailsmodel = new educationaldetailsmodel("","","","","","");
+// workexperiencedetailsmodel = new workexperiencedetailsmodel("","","","","")
+// personaldetailsmodel = new personaldetailsmodel("","","","","","","","","")
+// skilldetailssmodel=new skilldetailsmodel("")
+// hobbydetailsmodel =new hobbydetailesmodel("")
+ Details:any={
+  personal:[],
+  educational:[],
+  workexp:[],
+  skills:[],
+  hobbies:[]
+ }
+
  public displaydata():void{
-  
-  console.log("hello");
-  console.log(this.personalDetailsForm.value);
-  console.log(this.educationDetailsForm.value);
-  console.log(this.workExperienceDetailsForm.value);
-  console.log(this.skillsForm.value);
-  console.log(this.hobbiesForm.value);
+
+  this.Details.personal = this.personalDetailsForm.value;
+  this.Details.educational = this.educationDetailsForm.value;
+  this.Details.workexp = this.workExperienceDetailsForm.value;
+  this.Details.skills = this.skillsForm.value;
+  this.Details.hobbies = this.hobbiesForm.value;
+
+this.resumeservice.senddata(this.Details);
+console.log(this.Details);
+
+  // this.resumeservice.senddata(this.resumedata)
+  // console.log();
+  // console.log(this.personalDetailsForm.value);
+  // console.log(this.educationDetailsForm.value);
+  // console.log(this.workExperienceDetailsForm.value);
+  // console.log(this.skillsForm.value);
+  // console.log(this.hobbiesForm.value);
  }
 
 
