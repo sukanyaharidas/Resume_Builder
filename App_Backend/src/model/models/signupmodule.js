@@ -6,5 +6,5 @@ const authSchema=new Schema({
     emailid: String
 });
 
-var authData=mongoose.model('AuthData', authSchema);
+var authData=mongoose.model('authdatas', authSchema);
 module.exports=authData;
