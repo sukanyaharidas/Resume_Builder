@@ -1,6 +1,8 @@
 const mongoose = require ("mongoose");
 
-const resumedetails = new mongoose.Schema({
+const Schema=mongoose.Schema;
+
+const resumedetails = new Schema({
 
     personal:[{  
          qualification: String,
@@ -41,8 +43,8 @@ const resumedetails = new mongoose.Schema({
 )
 
 
-const resumecred = mongoose.model('resumecred', resumedetails)
+var resumecred = mongoose.model('resumecred', resumedetails);
 
 
 
-module.exports = resumecred
+module.exports = resumecred;

@@ -3,6 +3,10 @@ const cors = require("cors");
 const bodyparser = require("body-parser");
 const path = require("path")
 const   resumecred  = require('./src/model/models/resumemodel')
+const signup= require('./src/model/models/signupmodule')
+const jwt = require("jsonwebtoken");
+
+
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const app = new express();
@@ -26,7 +30,7 @@ mongoose.connect(process.env.DATABASE_URL, {
     .catch(err => console.log(err));
 
 // requiring routes
-app.post('/api/insert', function (req, res) {
+app.post('/insert', function (req, res) {
     console.log('req.body');
     var resumeinputs = {
 personal:[{
@@ -59,7 +63,7 @@ skills:[{
     skill: req.body.skill,
 }],
 hobbies:[{
-    hobby: req.body.hobby
+    hobby: req.body.data.hobby
 }]
 
     }
@@ -81,6 +85,58 @@ app.get('/api/:id',(req,res)=>{
         res.send(data)
     })
 })
+
+
+app.post('/signup',function(req,res){
+    console.log(req.body);
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
+    var data={
+        fname:req.body.users.fname,
+        emailid:req.body.users.emailid,
+        password:req.body.users.password
+    };
+    var _auth=new signup(data);
+    _auth.save();
+//  _auth.save((err,d)=>{
+//     if(err){
+//         res.status(error.name === 'MongoError' && error.code === 11000).json({
+//             message: 'Email is already registered'
+//         })
+//     } else{
+//         res.status(200).json({
+//             message: 'User created'
+//         })
+//     }
+});
+
+ 
+app.post('/login', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
+    console.log("data is",req.body);
+    signup
+    .findOne({ emailid: req.body.authData.username, password: req.body.authData.password },(err,user)=>{
+      if(err){
+        console.log("error is",err)
+      }
+      else{
+        console.log(user)
+      }
+    })
+    .clone()
+    .then((user) => {
+      if(user !== null){
+      let payload = { subject: user.email + user.password };
+      let token = jwt.sign(payload, "secretKey");
+      res.status(200).send({ token });
+      }
+      else{
+        res.status(401).send('Wrong Credentials')
+      }
+    });
+  
+  });
 
 app.get('/', (req, res) => {
     res.send('App is working Fine')

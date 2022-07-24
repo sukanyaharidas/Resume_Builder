@@ -52,9 +52,8 @@ export class ResumeserviceService {
  
 senddata(data:any){{
   console.log(data);
-  return this.http.post('http://localhost:3000/api/insert',{data})
-.subscribe(data=>{console.log(data);
-})
+  return this.http.post('http://localhost:3000/insert', {data})
+  .subscribe((data)=>console.log(data));
 }
 
 }

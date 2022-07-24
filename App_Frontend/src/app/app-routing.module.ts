@@ -10,6 +10,7 @@ import { Template1Component } from './template1/template1.component';
 import { Template2Component } from './template2/template2.component';
 import { Template3Component } from './template3/template3.component';
 import { Template4Component } from './template4/template4.component';
+import { UserUIComponent } from './user-ui/user-ui.component';
 
 const routes: Routes = [{path:"",component: HomeComponent},
                         {path:"\login",component: LoginComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [{path:"",component: HomeComponent},
                         {path:"\_temp2",component:Template2Component},
                         {path:"\_temp3",component:Template3Component},
                         {path:"\_temp4",component:Template4Component},
-                        {path:"\Choose_Template",component:ChooseTemmplateComponent}
+                        {path:"\Choose_Template",component:ChooseTemmplateComponent},
+                        {path:"\home_user",component:UserUIComponent}
                         // {path:"\previewResume",
                         //  component:ResumePreviewComponent,
                         // children:[

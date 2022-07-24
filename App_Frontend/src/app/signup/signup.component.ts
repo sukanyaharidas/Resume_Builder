@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, ReactiveFormsModule,FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl,FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthServiceService } from '../auth-service.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -10,15 +13,15 @@ import { FormControl, ReactiveFormsModule,FormGroup, FormBuilder, Validators } f
 export class SignupComponent implements OnInit {
 
 
+  signupUser = {fname : '',
+  emailid: '',
+ password:''
+};
 
   form:FormGroup|any;
-  constructor(private fb:FormBuilder, private activeModal: NgbActiveModal){}
+  constructor(private fb:FormBuilder,public auth:AuthServiceService,
+    public router:Router){}
 
-registerVerify()
-{
-alert("Welcome to the Resume World")
-}
-  
  // constructor(private activeModal: NgbActiveModal) {}
   ngOnInit() {
 
@@ -33,8 +36,20 @@ alert("Welcome to the Resume World")
       // } 
       )
   }
-  closeModal() {
-    this.activeModal.close('Modal Closed');
+  // closeModal() {
+  //   this.activeModal.close('Modal Closed');
     
+  // }
+
+  signUp(){
+    this.auth.userSignup(this.signupUser);
+    // .subscribe(
+    //   res=>console.log(res),
+    //   err=>console.log(err)
+    // )
+    console.log(this.signupUser);
+    alert("Account Created");
+    this.router.navigate(['/login']);
   }
+
 }

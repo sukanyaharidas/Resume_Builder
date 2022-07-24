@@ -23,7 +23,7 @@ import { ResumeserviceService } from '../resumeservice.service';
 })
 export class Form1Component implements OnInit {
  
-  isLinear=true;
+  isLinear=false;
   public personalDetailsForm: FormGroup |any;
   public educationDetailsForm: FormGroup |any;
   public workExperienceDetailsForm: FormGroup |any;

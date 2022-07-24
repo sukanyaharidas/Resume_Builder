@@ -1,17 +1,17 @@
 <div class="login">
     <div class="form">
-      <form class="login-form" [formGroup]="form" (ngSubmit)="userVerify()">
+      <form class="login-form" [formGroup]="form" (ngSubmit)="loginUser()">
         <span class="material-icons">lock</span>
         
         <div>
-          <input type="text" class="form-control" formControlName="username"  name="username" required/>
+          <input type="text" class="form-control" formControlName="username" [(ngModel)]="User.username" placeholder="Enter Username/Email" name="username" required/>
           <small class="error text-danger" *ngIf="form.get('username').invalid && form.get('username').touched">Username Required</small>
       </div>
         <div>
-            <input type="password" class="form-control" formControlName="password"  name="password" required/>
+            <input type="password" class="form-control" formControlName="password" placeholder="Enter Password" [(ngModel)]="User.password" name="password" required/>
             <small class="error text-danger" *ngIf="form.get('password').invalid && form.get('password').touched">Password Required</small>
         </div>
-        <button [disabled]="form.invalid">login</button>
+        <button class="btn" type="submit" class="confirm" data-dismiss="modal" [disabled]="!form.valid">login</button>
       </form>  
     </div>
   </div>
