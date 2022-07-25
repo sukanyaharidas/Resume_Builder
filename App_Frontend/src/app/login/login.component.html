@@ -20,6 +20,7 @@
             <small class="error text-danger" *ngIf="form.get('password').invalid && form.get('password').touched">Password Required</small>
         </div>
         <button class="btn" type="submit" class="confirm" data-dismiss="modal" [disabled]="!form.valid">login</button>
+        <small>Are you an Admin? <a routerLink="/admin">click Here!</a></small>
       </form>  
     </div>
   </div>

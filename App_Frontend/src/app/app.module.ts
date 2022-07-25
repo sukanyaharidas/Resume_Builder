@@ -34,6 +34,7 @@ import { Template2Component } from './template2/template2.component';
 import { SignupComponent } from './signup/signup.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AccountsettingsComponent } from './accountsettings/accountsettings.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 // import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 
 
@@ -60,7 +61,8 @@ import { AccountsettingsComponent } from './accountsettings/accountsettings.comp
     Template2Component,
     SignupComponent,
     SidenavComponent,
-    AccountsettingsComponent
+    AccountsettingsComponent,
+    AdminLoginComponent
     // ResumePreviewComponent
   ],
   imports: [
