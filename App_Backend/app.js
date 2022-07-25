@@ -2,13 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const bodyparser = require("body-parser");
 const path = require("path")
-const   resumecred  = require('./src/model/models/resumemodel')
+const resumecred  = require('./src/model/models/resumemodel')
 const signup= require('./src/model/models/signupmodule')
 const jwt = require("jsonwebtoken");
 
 
 const mongoose = require("mongoose")
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
+const { sign } = require("crypto");
 const app = new express();
 const port = 3000;
 
@@ -31,7 +32,7 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 // requiring routes
 app.post('/insert', function (req, res) {
-    console.log('req.body');
+    console.log(req.body);
     var resumeinputs = {
 personal:[{
     qualification: req.body.qualification,
@@ -91,24 +92,19 @@ app.post('/signup',function(req,res){
     console.log(req.body);
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
-    var data={
-        fname:req.body.users.fname,
-        emailid:req.body.users.emailid,
-        password:req.body.users.password
-    };
+    console.log(req.body);
+        var data={
+                    fname:req.body.users.fname,
+                    emailid:req.body.users.emailid,
+                    password:req.body.users.password
+                };
     var _auth=new signup(data);
-    _auth.save();
-//  _auth.save((err,d)=>{
-//     if(err){
-//         res.status(error.name === 'MongoError' && error.code === 11000).json({
-//             message: 'Email is already registered'
-//         })
-//     } else{
-//         res.status(200).json({
-//             message: 'User created'
-//         })
-//     }
+ _auth.save();
+    
+  
 });
+
+
 
  
 app.post('/login', (req, res) => {
