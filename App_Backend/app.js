@@ -33,11 +33,38 @@ app.use(express.json());
 app.post('/api/insert', function (req, res) {
     console.log(req.body);
     var resumeinputs = {
-personal:req.body.personal,
-educational:req.body.educational,
-workexp:req.body.workexp,
-skills:req.body.skills,
-hobbies:req.body.hobbies
+personal:[{
+    qualification: req.body.qualification,
+    courseDetails: req.body.courseDetails,
+    institution: req.body.institution,
+    startDate: req.body.startDate,
+    course: req.body.course,
+    endDate: req.body.endDate,
+}],
+educational:[{
+    name: req.body.name,
+    role: req.body.role,
+    aboutMe: req.body.aboutMe,
+    email: req.body.email,
+    phone: req.body.phone,
+    image: req.body.image,
+    address: req.body.address,
+    city: req.body.city,
+    pin: req.body.pin
+}],
+workexp:[{
+    jobProfile:req.body.jobProfile,
+    startDate: req.body.startDate,
+    companName: req.body.companName,
+    endDate: req.body.endDate,
+    jobDescription: req.body.jobDescription,
+}],
+skills:[{
+    skill: req.body.skill,
+}],
+hobbies:[{
+    hobby: req.body.hobby
+}]
 
     }
 
