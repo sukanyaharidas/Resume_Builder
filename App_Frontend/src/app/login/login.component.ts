@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   modalService: any;
   exampleModal: any;
 
-  
+  flag:boolean=false;
 
   constructor(private _auth:AuthServiceService,private _router:Router, ) {}
   ngOnInit() {
@@ -35,27 +35,17 @@ export class LoginComponent implements OnInit {
       )
   }
  
-closeModal() {
-   
-    
-  }
+
   loginUser(){
   
     this._auth.login(this.User).subscribe((data)=>{
+ 
+      this._router.navigate(['\home_user'])},
+      (error) => {
+        this.flag = true;
+    }
       
-
-      if(data){
-        this._router.navigate(['\home_user']);
-       
-
-      }
       // localStorage.setItem('token',data.token)
-    
-     
-        // 
-        
-      
-  
-      })
+    )
     }
 }
