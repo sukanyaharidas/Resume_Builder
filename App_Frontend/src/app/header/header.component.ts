@@ -13,25 +13,23 @@ import { Template1Component } from '../template1/template1.component';
 export class HeaderComponent implements OnInit {
 
   constructor(public modalService: NgbModal) { }
-  openModal() {
-    //ModalComponent is component name where modal is declare
-    const modalRef = this.modalService.open(LoginComponent);
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
+  // openModal() {
+  //   const modalRef = this.modalService.open(LoginComponent);
+  //   modalRef.result.then((result) => {
+  //     console.log(result);
+  //   }).catch((error) => {
+  //     console.log(error);
+  //   });
+  // }
 
-  openModalSignUp() {
-    //ModalComponent is component name where modal is declare
-    const modalRef = this.modalService.open(SignupComponent);
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
+  // openModalSignUp() {
+  //   const modalRef = this.modalService.open(SignupComponent);
+  //   modalRef.result.then((result) => {
+  //     console.log(result);
+  //   }).catch((error) => {
+  //     console.log(error);
+  //   });
+  // }
 
   ngOnInit(): void {
   }

@@ -22,3 +22,7 @@ export class AuthServiceService {
     }
 
 }
+function subscribe(arg0: (data: any) => void) {
+  throw new Error('Function not implemented.');
+}
+
