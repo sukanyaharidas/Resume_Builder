@@ -18,6 +18,8 @@ export class SignupComponent implements OnInit {
  password:''
 };
 
+flag:boolean=true;
+ showMsg: Boolean=false;
   form:FormGroup|any;
   constructor(private fb:FormBuilder,public auth:AuthServiceService,
     public router:Router){}
@@ -43,13 +45,10 @@ export class SignupComponent implements OnInit {
 
   signUp(){
     this.auth.userSignup(this.signupUser);
-    // .subscribe(
-    //   res=>console.log(res),
-    //   err=>console.log(err)
-    // )
-    console.log(this.signupUser);
-    alert("Account Created");
-    this.router.navigate(['/login']);
-  }
+    this.showMsg=true;
+     
+     }
+
+   
 
 }
