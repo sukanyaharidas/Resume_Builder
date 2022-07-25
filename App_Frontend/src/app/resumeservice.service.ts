@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { educationaldetailsmodel } from 'src/models/educationaldetailsmodel';
-import { workexperiencedetailsmodel } from 'src/models/workexperiencemodel';
-import { personaldetailsmodel } from 'src/models/personaldetailsmodel';
-import { hobbydetailesmodel } from 'src/models/hobbiesmodel';
-import { skilldetailsmodel } from 'src/models/skillsmodel';
+
+import {resumemodel} from './resumemodel'
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
@@ -11,50 +8,50 @@ import { HttpClient } from '@angular/common/http';
 export class ResumeserviceService {
 
   constructor(private http: HttpClient) { }
-  data = [[{
-    qualification: '',
-    courseDetails: '',
-    institution: '',
-    startDate: '',
-    course: '',
-    endDate: '',
-  }], [{
-
-    name: '',
-    role: '',
-    aboutMe: '',
-    email: '',
-    phone: '',
-    image: '',
-    address: '',
-    city: '',
-    pin: ''
-
-
-  }],
-  [{
-    jobProfile: '',
-    startDate: '',
-    companName: '',
-    endDate: '',
-    jobDescription: '',
-  }],
-  [{
-    skill: '',
-
-  }],
-  [{
-    hobby: '',
-
-  }]
-  ]
+  data = {
+  personal:[{  
+       qualification: '',
+      courseDetails: '',
+      institution: '',
+      startDate: '',
+      course: '',
+      endDate: '',}],
+      educational:[{
+          name: '',
+          role: '',
+          aboutMe: '',
+          email: '',
+          phone: '',
+          image: '',
+          address: '',
+          city: '',
+          pin: ''
+      }],
+      workexp:[{
+          jobProfile:'',
+          startDate: '',
+          companName: '',
+          endDate: '',
+          jobDescription: '',
+      }],   
+      skills:  [{
+          skill: '',
+      
+        }],
+        hobbies:
+        [{
+          hobby: '',
+      
+        }]
+}
 
  
-senddata(data:any){{
-  console.log(data);
-  return this.http.post('http://localhost:3000/api/insert',{data})
-.subscribe(data=>{console.log(data);
-})
+senddata(Data:resumemodel){{
+  console.log(Data);
+  return this.http.post('http://localhost:3000/api/insert',{Data})
+.subscribe(()=>{console.log(Data)})
+
+
 }
 
 }

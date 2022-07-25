@@ -8,13 +8,6 @@ import { HobbiesComponent } from './hobbies/hobbies.component';
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
 import { SkillsComponent } from './skills/skills.component';
 import { WorkexperienceComponent } from './workexperience/workexperience.component';
-
-import { educationaldetailsmodel } from 'src/models/educationaldetailsmodel';
-import { workexperiencedetailsmodel } from 'src/models/workexperiencemodel';
-import { personaldetailsmodel } from 'src/models/personaldetailsmodel';
-import { hobbydetailesmodel } from 'src/models/hobbiesmodel';
-import { skilldetailsmodel } from 'src/models/skillsmodel';
-
 import { ResumeserviceService } from '../resumeservice.service';
 @Component({
   selector: 'app-form1',

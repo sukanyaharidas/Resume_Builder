@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logged-inheader.component.css']
 })
 export class LoggedINheaderComponent implements OnInit {
-
+  panelOpenState = false;
+ showme :boolean=false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+  toggleTag(){
+    this.showme=!this.showme
   }
 
 }

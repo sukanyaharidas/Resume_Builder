@@ -28,7 +28,7 @@ import { Template4Component } from './template4/template4.component';
 import { AdminUIComponent } from './admin-ui/admin-ui.component';
 import { UserUIComponent } from './user-ui/user-ui.component';
 import { LoggedINheaderComponent } from './logged-inheader/logged-inheader.component';
-
+import { AvatarModule } from 'ngx-avatar';
 
 
 @NgModule({
@@ -63,6 +63,7 @@ import { LoggedINheaderComponent } from './logged-inheader/logged-inheader.compo
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
+    AvatarModule,
     MatProgressBarModule,
     MatToolbarModule
 

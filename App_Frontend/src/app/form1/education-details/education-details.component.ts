@@ -2,7 +2,7 @@ import { Component, Input, Output} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 
-import { educationaldetailsmodel } from 'src/models/educationaldetailsmodel';
+
 
 
 @Component({

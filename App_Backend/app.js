@@ -2,65 +2,42 @@ const express = require("express");
 const cors = require("cors");
 const bodyparser = require("body-parser");
 const path = require("path")
-const   resumecred  = require('./src/model/models/resumemodel')
+const resumecred  = require('./src/model/models/resumemodel')
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const app = new express();
-const port = process.env.PORT
+// const port = process.env.PORT
 
-dotenv.config();
-app.use(cors());
-app.use(bodyparser.json());
-app.use(express.json({ urlencoded: true }));
-app.use(express.json());
+// dotenv.config();
 
 
 
 
 
+const db ='mongodb+srv://Resume_Builder123:iEwOxF94MrLCFXeF@resumebuilder.rjnsjcb.mongodb.net/?retryWrites=true&w=majority'
 // Databaseconnection
-mongoose.connect(process.env.DATABASE_URL, {
+mongoose.connect(db, {
     useNewUrlParser: true,
 })
     .then(() => console.log("MongoDB Connected..."))
     .catch(err => console.log(err));
 
+
+    app.use(cors());
+app.use(bodyparser.json());
+app.use(express.json({ urlencoded: true }));
+app.use(express.json());
+
+
 // requiring routes
 app.post('/api/insert', function (req, res) {
-    console.log('req.body');
+    console.log(req.body);
     var resumeinputs = {
-personal:[{
-    qualification: req.body.qualification,
-    courseDetails: req.body.courseDetails,
-    institution: req.body.institution,
-    startDate: req.body.startDate,
-    course: req.body.course,
-    endDate: req.body.endDate,
-}],
-educational:[{
-    name: req.body.name,
-    role: req.body.role,
-    aboutMe: req.body.aboutMe,
-    email: req.body.email,
-    phone: req.body.phone,
-    image: req.body.image,
-    address: req.body.address,
-    city: req.body.city,
-    pin: req.body.pin
-}],
-workexp:[{
-    jobProfile:req.body.jobProfile,
-    startDate: req.body.startDate,
-    companName: req.body.companName,
-    endDate: req.body.endDate,
-    jobDescription: req.body.jobDescription,
-}],
-skills:[{
-    skill: req.body.skill,
-}],
-hobbies:[{
-    hobby: req.body.hobby
-}]
+personal:req.body.personal,
+educational:req.body.educational,
+workexp:req.body.workexp,
+skills:req.body.skills,
+hobbies:req.body.hobbies
 
     }
 
@@ -87,6 +64,6 @@ app.get('/', (req, res) => {
 })
 
 // port listening
-app.listen(port, function () {
+app.listen(3000, function () {
     console.log('running on port 3000');
 })
