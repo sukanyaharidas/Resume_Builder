@@ -1,0 +1,24 @@
+<app-logged-inheader></app-logged-inheader>
+<app-sidenav></app-sidenav>
+
+<div class="account">
+    <h1>Your Account</h1>
+
+<div class="name1">
+    <input type="text" id="nameinput" placeholder="Name" style="font-size: 20px;" style="color: #000;" [disabled]="inactive1">
+ 
+  
+    <button type="button" (click)="changename()" class="btn btn-light">Edit</button>
+   
+
+</div>
+
+<div class="mail">
+    <input type="text" id="EmailID" placeholder="Email" style="font-size: 20px;" style="color: #000;" [disabled]="inactive2">
+ 
+  
+    <button type="button" (click)="changemail()" class="btn btn-light">Edit</button>
+
+
+</div>
+</div>

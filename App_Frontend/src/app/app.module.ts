@@ -32,6 +32,8 @@ import { ChooseTemmplateComponent } from './choose-temmplate/choose-temmplate.co
 import { Template3Component } from './template3/template3.component';
 import { Template2Component } from './template2/template2.component';
 import { SignupComponent } from './signup/signup.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { AccountsettingsComponent } from './accountsettings/accountsettings.component';
 // import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 
 
@@ -56,7 +58,9 @@ import { SignupComponent } from './signup/signup.component';
     ChooseTemmplateComponent,
     Template3Component,
     Template2Component,
-    SignupComponent
+    SignupComponent,
+    SidenavComponent,
+    AccountsettingsComponent
     // ResumePreviewComponent
   ],
   imports: [

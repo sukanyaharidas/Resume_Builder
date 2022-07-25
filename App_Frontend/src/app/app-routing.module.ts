@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountsettingsComponent } from './accountsettings/accountsettings.component';
+import { AdminUIComponent } from './admin-ui/admin-ui.component';
 import { ChooseTemmplateComponent } from './choose-temmplate/choose-temmplate.component';
 import { Form1Component } from './form1/form1.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +23,9 @@ const routes: Routes = [{path:"",component: HomeComponent},
                         {path:"\_temp3",component:Template3Component},
                         {path:"\_temp4",component:Template4Component},
                         {path:"\Choose_Template",component:ChooseTemmplateComponent},
-                        {path:"\home_user",component:UserUIComponent}
+                        {path:"\home_user",component:UserUIComponent},
+                        {path:"\Accountsettings",component:AccountsettingsComponent},
+                      
                         // {path:"\previewResume",
                         //  component:ResumePreviewComponent,
                         // children:[
