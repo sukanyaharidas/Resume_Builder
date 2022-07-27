@@ -17,8 +17,8 @@ export class SignupComponent implements OnInit {
   emailid: '',
  password:''
 };
-
-flag:boolean=true;
+passwordMatch=""
+flag:boolean=false;
  showMsg: Boolean=false;
   form:FormGroup|any;
   constructor(private fb:FormBuilder,public auth:AuthServiceService,
@@ -43,12 +43,31 @@ flag:boolean=true;
     
   // }
 
-  signUp(){
-    this.auth.userSignup(this.signupUser);
-    this.showMsg=true;
+  // signUp(){
+  //   this.auth.userSignup(this.signupUser);
+  //   this.showMsg=true;
      
-     }
+  //    }
 
+
+  signUp(){
+  
+    this.auth.userSignup(this.signupUser).subscribe((data)=>{
+      this.showMsg=true;
+      this.flag=false;
+      this.signupUser.fname='';
+      this.signupUser.emailid='';
+      this.signupUser.password='';
+      },
+      (error) => {
+        this.flag = true;
+        this.showMsg=false;
+    }
+   
+      
+      // localStorage.setItem('token',data.token)
+    )
+  }
    
 
 }
