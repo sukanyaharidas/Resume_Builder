@@ -1,6 +1,14 @@
 <div class="login">
     <div class="form">
-      <div class="row"  *ngIf="showMsg">
+      <div class="row"  *ngIf="flag && !showMsg">
+        <div class="col-xs-12">
+          <p class="alert alert-success">
+              <strong>User Already Exists!</strong> 
+
+          </p>
+        </div>
+      </div>
+      <div class="row"  *ngIf="showMsg && !flag">
         <div class="col-xs-12">
           <p class="alert alert-success">
               <strong>Registration Success!</strong> 
@@ -8,6 +16,12 @@
           </p>
         </div>
       </div>
+
+
+    <div>   <label id="repeatpassmsglbl" style="color: red;">{{passwordMatch}}</label>
+</div>
+
+      
         <h1>Sign Up</h1>
         
       <form class="login-form" [formGroup]="form" (ngSubmit)="signUp()">
