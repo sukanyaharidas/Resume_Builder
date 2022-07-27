@@ -32,10 +32,10 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 // requiring routes
 app.post('/insert', function (req, res) {
-    console.log(req.body);
+    console.log(req.body.data.hobbies);
     var resumeinputs = {
 personal:[{
-    qualification: req.body.qualification,
+    qualification: req.body.data.qualification,
     courseDetails: req.body.courseDetails,
     institution: req.body.institution,
     startDate: req.body.startDate,
@@ -68,9 +68,10 @@ hobbies:[{
 }]
 
     }
-
+    console.log(resumeinputs);
     var inputs = new resumecred(resumeinputs);
     inputs.save()
+   
     res.send()
 })
 
@@ -88,19 +89,58 @@ app.get('/api/:id',(req,res)=>{
 })
 
 
+// app.post('/signup',function(req,res){
+//     console.log(req.body);
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
+//     console.log(req.body);
+//         var data={
+//                     fname:req.body.users.fname,
+//                     emailid:req.body.users.emailid,
+//                     password:req.body.users.password
+//                 };
+//     var _auth=new signup(data);
+//  _auth.save();
+    
+  
+// });
+
+
 app.post('/signup',function(req,res){
-    console.log(req.body);
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
-    console.log(req.body);
+    console.log(req.body.users);
+    signup
+    .findOne({emailid: req.body.users.emailid},(err,user)=>{
+      if(user){
+        res.status(401).send('User Exists');
+      }
+      else{
         var data={
                     fname:req.body.users.fname,
                     emailid:req.body.users.emailid,
                     password:req.body.users.password
                 };
-    var _auth=new signup(data);
- _auth.save();
+                var _auth=new signup(data);
+             _auth.save();
+        res.status(200).send();
+      }
+    }) 
     
+
+
+//     if(mail.value!=signup.emailid){
+//       var data={
+//         fname:req.body.users.fname,
+//         emailid:req.body.users.emailid,
+//         password:req.body.users.password
+//     };
+//     var _auth=new signup(data);
+//  _auth.save();
+//     }
+//     else{
+//       res.send('User already exist');
+//     }
   
 });
 
