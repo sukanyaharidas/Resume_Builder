@@ -4,6 +4,8 @@ import { Form1Component } from '../form1/form1.component';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { Template1Component } from '../template1/template1.component';
+import { AuthServiceService } from '../auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,7 @@ import { Template1Component } from '../template1/template1.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public modalService: NgbModal) { }
+  constructor(public modalService: NgbModal, public auth:AuthServiceService, public router:Router) { }
   openModal() {
     //ModalComponent is component name where modal is declare
     const modalRef = this.modalService.open(LoginComponent);
@@ -34,6 +36,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  logoutUser(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 
 }

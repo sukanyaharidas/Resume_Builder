@@ -1,17 +1,26 @@
 <div class="login">
     <div class="form">
-      <form class="login-form" #userlogin = "ngForm" (ngSubmit)="userVerify()">
+      <div class="row"  *ngIf="flag">
+        <div class="col-xs-12">
+          <p class="alert alert-success">
+              <strong>Wrong Credentials</strong> 
+
+          </p>
+        </div>
+      </div>
+      <form class="login-form" [formGroup]="form" (ngSubmit)="loginUser()">
         <span class="material-icons">lock</span>
+        
         <div>
-            <!-- <label for="email">Email</label> -->
-            <input type="text" class="form-control"  [(ngModel)]="User.username" name="uname" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
-            <small class="text-danger" [class.d-none] = "email.valid || email.touched">Enter valid Email</small>
-        </div>
+          <input type="text" class="form-control" formControlName="username" [(ngModel)]="User.username" placeholder="Enter Username/Email" name="username" required/>
+          <small class="error text-danger" *ngIf="form.get('username').invalid && form.get('username').touched">Username Required</small>
+      </div>
         <div>
-            <input type="password" class="form-control" [(ngModel)]="User.password"  name="password" #pwd="ngModel" [class.is-invalid]="pwd.invalid && pwd.touched" required/>
-            <small class="text-danger" [class.d-none] = "pwd.valid || pwd.touched">Enter a Valid Password</small>
+            <input type="password" class="form-control" formControlName="password" placeholder="Enter Password" [(ngModel)]="User.password" name="password" required/>
+            <small class="error text-danger" *ngIf="form.get('password').invalid && form.get('password').touched">Password Required</small>
         </div>
-        <button [disabled]="userlogin.form.invalid">login</button>
+        <button class="btn" type="submit" class="confirm" data-dismiss="modal" [disabled]="!form.valid">login</button>
+        <small>Are you an Admin? <a routerLink="/admin">click Here!</a></small>
       </form>  
     </div>
   </div>

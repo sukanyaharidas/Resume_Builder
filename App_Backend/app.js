@@ -2,131 +2,235 @@ const express = require("express");
 const cors = require("cors");
 const bodyparser = require("body-parser");
 const path = require("path")
-const { usercred, resumecred } = require('./src/model/model')
+const resumecred  = require('./src/model/models/resumemodel')
+const signup= require('./src/model/models/signupmodule')
+const jwt = require("jsonwebtoken");
+
 
 const mongoose = require("mongoose")
-// dzqvhud8TXBOk2CS
-const db = "mongodb+srv://Resume_Builder123:dzqvhud8TXBOk2CS@resumebuilder.rjnsjcb.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(db, {
+const dotenv = require("dotenv");
+const { sign } = require("crypto");
+const app = new express();
+const port = 4000;
+
+dotenv.config();
+app.use(cors());
+app.use(bodyparser.json());
+app.use(express.json({ urlencoded: true }));
+app.use(express.json());
+
+
+
+function verifyToken(req,res,next){
+  if(!req.headers.authorization){
+    return res.status(401).send('unauthorizedrequest')
+  }
+  let token=req.headers.authorization.split('')[1]
+  if(token=='null'){
+    return res.status(401).send('unauthorizedrequest')
+
+  }
+  let payload=jwt.verify(token, 'secretKey')
+  console.log(payload);
+  if(!payload)
+{
+  return res.status(401).send('unauthorizedrequest')
+  req.userId=payload.subject;
+  next()
+
+}
+}
+
+// Databaseconnection
+mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
 })
     .then(() => console.log("MongoDB Connected..."))
     .catch(err => console.log(err));
-const app = new express();
-app.use(cors());
-app.use(bodyparser.json());
-app.use(express.json({ urlencoded: true }));
 
-
-// adding signup details
-app.post("/signup", function (req, res) {
-
-    console.log(req.body);
-    var user = {
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    }
-    var newuser = new usercred(user);
-    console.log(newuser);
-    newuser.save();
-    res.send();
-})
-
-// app.post('/login', function (req, res) {
-//     console.log(req.body);
-//     var username = req.body.username
-//     var email = req.body.email
-//     var password = req.body.password
-
-//     console.log(username);
-//     usercred.findOne({ usernam, email })
-//         .then(users => {
-//             console.log(users);
-//             if (users.username || users.email == email) {
-//                 if (users.password == password) {
-//                     return res.json('success')
-//                 }
-//             } else {
-//                 res.status(401).send('Enter valid email and password')
-
-//             }
-
-//         })
-
-// })
-app.post('/input', function (req, res) {
-    console.log(req.body._id);
+// requiring routes
+app.post('/insert',verifyToken, function (req,verifyToken, res) {
+    console.log(req.body.data.hobbies);
     var resumeinputs = {
-        Name: req.body.data.Name,
-        email: req.body.data.email,
-        phonenumber: req.body.data.phonenumber,
-        address: req.body.data.address,
-        Link1: req.body.data.Link1,
-        tenthedu: req.body.data.tenthedu,
-        twelthedu: req.body.body.data.twelthedu,
-        collegeedu: req.body.data.collegeedu,
-        certificate1: req.body.data.certificate1,
-        certificate2: req.body.data.certificate2,
-        hobbies: req.body.data.hobbies,
-        skill1: req.body.data.skill1,
-        skill2: req.body.data.skill2,
-    }
+personal:[{
+    qualification: req.body.data.qualification,
+    courseDetails: req.body.courseDetails,
+    institution: req.body.institution,
+    startDate: req.body.startDate,
+    course: req.body.course,
+    endDate: req.body.endDate,
+}],
+educational:[{
+    name: req.body.name,
+    role: req.body.role,
+    aboutMe: req.body.aboutMe,
+    email: req.body.email,
+    phone: req.body.phone,
+    image: req.body.image,
+    address: req.body.address,
+    city: req.body.city,
+    pin: req.body.pin
+}],
+workexp:[{
+    jobProfile:req.body.jobProfile,
+    startDate: req.body.startDate,
+    companName: req.body.companName,
+    endDate: req.body.endDate,
+    jobDescription: req.body.jobDescription,
+}],
+skills:[{
+    skill: req.body.skill,
+}],
+hobbies:[{
+    hobby: req.body.data.hobby
+}]
 
+    }
+    console.log(resumeinputs);
     var inputs = new resumecred(resumeinputs);
     inputs.save()
+   
+    res.send()
+})
+
+// const resumerouter = require('./src/model/routes/resumeroute')
+
+// app.use('/api',resumerouter)
+app.get('/api/:id',(req,res)=>{
+    console.log('data');
+    const id =req.params._id;
+    resumecred.findOne({"_id":id})
+    .then((data)=>{
+        console.log('data');
+        res.send(data)
+    })
 })
 
 
-app.put('/update', (req, res) => {
-    console.log(re.body);
-    id = req.body._id
-    Name = req.body.Name,
-        email = req.body.email,
-        phonenumber = req.body.phonenumber,
-        address = req.body.address,
-        Link1 = req.body.Link1,
-        tenthedu = req.body.tenthedu,
-        twelthedu = req.body.twelthedu,
-        collegeedu = req.body.collegeedu,
-        certificate1 = req.body.certificate1,
-        certificate2 = req.body.certificate2,
-        hobbies = req.body.hobbies,
-        skill1 = req.body.skill1,
-        skill2 = req.body.skill2
-    resumecred.findByIdAndUpdate({ "_id": id },
-        {
-            $set: {
-                "Name": Name,
-                "email": email,
-                "phonenumber": phonenumber,
-                "address": address,
-                "Link1": Link1,
-                "tenthedu": tenthedu,
-                "twelthedu": twelthedu,
-                "collegeedu": collegeedu,
-                "certificate1": certificate1,
-                "certificate2": certificate2,
-                "hobbies": hobbies,
-                "skill1": skill1,
-                "skill2": skill2
-            }
-        })
-        .then(function () {
-            res.send();
-        })
+// app.post('/signup',function(req,res){
+//     console.log(req.body);
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
+//     console.log(req.body);
+//         var data={
+//                     fname:req.body.users.fname,
+//                     emailid:req.body.users.emailid,
+//                     password:req.body.users.password
+//                 };
+//     var _auth=new signup(data);
+//  _auth.save();
+    
+  
+// });
+
+
+app.post('/signup',function(req,res){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
+    console.log(req.body.users);
+    signup
+    .findOne({emailid: req.body.users.emailid},(err,user)=>{
+      if(user){
+        res.status(401).send('User Exists');
+      }
+      else{
+        var data={
+                    fname:req.body.users.fname,
+                    emailid:req.body.users.emailid,
+                    password:req.body.users.password
+                };
+                var _auth=new signup(data);
+             _auth.save();
+        res.status(200).send();
+      }
+    }) 
+    
+
+
+//     if(mail.value!=signup.emailid){
+//       var data={
+//         fname:req.body.users.fname,
+//         emailid:req.body.users.emailid,
+//         password:req.body.users.password
+//     };
+//     var _auth=new signup(data);
+//  _auth.save();
+//     }
+//     else{
+//       res.send('User already exist');
+//     }
+  
+});
+
+
+
+ 
+app.post('/login', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
+    console.log("data is",req.body);
+ 
+    signup
+    .findOne({ emailid: req.body.authData.username, password: req.body.authData.password },(err,user)=>{
+      if(!user){
+        console.log("error is",err);
+        res.status(401).send();
+      }
+      else{
+        let payload = { subject: user.email + user.password };
+            let token = jwt.sign(payload, "secretKey");
+            res.status(200).send({ token });
+        console.log(user)
+      }
+    })
+
+  })
+  //   .clone()
+  //   .then((user) => {
+  //     if(user !== null){
+  //     let payload = { subject: user.email + user.password };
+  //     let token = jwt.sign(payload, "secretKey");
+  //     res.status(200).send({ token });
+  //     }
+  //     else{
+  //       res.status(401).send('Wrong Credentials')
+  //     }
+  //   });
+  
+  // });
+
+
+// admin login
+app.post('/login_admin', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
+  console.log("data is",req.body);
+
+  if(process.env.ADMIN_USERNAME===req.body.data.username && 
+    process.env.ADMIN_PASSWORD===req.body.data.password){
+
+      let payload={subject:process.env.ADMIN_USERNAME+process.env.ADMIN_PASSWORD}
+      let token=jwt.sign(payload,'secretKey')
+      res.status(200).send({token});
+      console.log("success");
+     
+
+    }
+    else{
+     
+      console.log("failed");
+
+      res.status(401).send("failed");
+    }
+  })
+
+
+
+app.get('/', (req, res) => {
+    res.send('App is working Fine')
 })
 
-app.delete('/remove', (req, res) => {
-    id = req.params.id;
-    resumecred.findByIdAndRemove({ "_id": id })
-        .then(() => {
-            console.log('success')
-            res.send();
-        })
-})
-
-
-app.listen(3000, function () {
-    console.log('running on port 3000');
+// port listening
+app.listen(port, function () {
+    console.log('running on port 4000');
 })

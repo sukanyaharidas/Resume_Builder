@@ -1,0 +1,23 @@
+.account{
+    margin-left: 20em;
+    margin-top: 5px;
+}
+#nameinput{
+    width: 240px;
+    height: 50px;
+}
+.name1 button{
+ margin-left: 5px;
+}
+
+.mail{
+    padding-top: 30px;
+}
+
+.mail input{
+    width: 240px;
+    height: 50px;
+}
+.mail button{
+ margin-left: 5px;
+}
