@@ -11,7 +11,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv");
 const { sign } = require("crypto");
 const app = new express();
-const port = 3000;
+const port = 4000;
 
 dotenv.config();
 app.use(cors());
@@ -21,7 +21,25 @@ app.use(express.json());
 
 
 
+function verifyToken(req,res,next){
+  if(!req.headers.authorization){
+    return res.status(401).send('unauthorizedrequest')
+  }
+  let token=req.headers.authorization.split('')[1]
+  if(token=='null'){
+    return res.status(401).send('unauthorizedrequest')
 
+  }
+  let payload=jwt.verify(token, 'secretKey')
+  console.log(payload);
+  if(!payload)
+{
+  return res.status(401).send('unauthorizedrequest')
+  req.userId=payload.subject;
+  next()
+
+}
+}
 
 // Databaseconnection
 mongoose.connect(process.env.DATABASE_URL, {
@@ -31,7 +49,7 @@ mongoose.connect(process.env.DATABASE_URL, {
     .catch(err => console.log(err));
 
 // requiring routes
-app.post('/insert', function (req, res) {
+app.post('/insert',verifyToken, function (req,verifyToken, res) {
     console.log(req.body.data.hobbies);
     var resumeinputs = {
 personal:[{
@@ -151,28 +169,62 @@ app.post('/login', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
     console.log("data is",req.body);
+ 
     signup
     .findOne({ emailid: req.body.authData.username, password: req.body.authData.password },(err,user)=>{
-      if(err){
-        console.log("error is",err)
+      if(!user){
+        console.log("error is",err);
+        res.status(401).send();
       }
       else{
+        let payload = { subject: user.email + user.password };
+            let token = jwt.sign(payload, "secretKey");
+            res.status(200).send({ token });
         console.log(user)
       }
     })
-    .clone()
-    .then((user) => {
-      if(user !== null){
-      let payload = { subject: user.email + user.password };
-      let token = jwt.sign(payload, "secretKey");
-      res.status(200).send({ token });
-      }
-      else{
-        res.status(401).send('Wrong Credentials')
-      }
-    });
+
+  })
+  //   .clone()
+  //   .then((user) => {
+  //     if(user !== null){
+  //     let payload = { subject: user.email + user.password };
+  //     let token = jwt.sign(payload, "secretKey");
+  //     res.status(200).send({ token });
+  //     }
+  //     else{
+  //       res.status(401).send('Wrong Credentials')
+  //     }
+  //   });
   
-  });
+  // });
+
+
+// admin login
+app.post('/login_admin', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
+  console.log("data is",req.body);
+
+  if(process.env.ADMIN_USERNAME===req.body.data.username && 
+    process.env.ADMIN_PASSWORD===req.body.data.password){
+
+      let payload={subject:process.env.ADMIN_USERNAME+process.env.ADMIN_PASSWORD}
+      let token=jwt.sign(payload,'secretKey')
+      res.status(200).send({token});
+      console.log("success");
+     
+
+    }
+    else{
+     
+      console.log("failed");
+
+      res.status(401).send("failed");
+    }
+  })
+
+
 
 app.get('/', (req, res) => {
     res.send('App is working Fine')
@@ -180,5 +232,5 @@ app.get('/', (req, res) => {
 
 // port listening
 app.listen(port, function () {
-    console.log('running on port 3000');
+    console.log('running on port 4000');
 })
