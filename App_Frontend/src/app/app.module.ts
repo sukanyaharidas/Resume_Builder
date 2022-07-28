@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatStepperModule} from '@angular/material/stepper';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -35,8 +35,10 @@ import { SignupComponent } from './signup/signup.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AccountsettingsComponent } from './accountsettings/accountsettings.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AuthServiceService } from './auth-service.service';
 // import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
-
+import { HttpInterceptor } from '@angular/common/http';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,12 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     MatStepperModule
   ],
 
-  providers: [],
+  providers: [AuthServiceService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
