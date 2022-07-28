@@ -21,6 +21,7 @@ export class AdminLoginComponent implements OnInit {
   exampleModal: any;
 
   flag:boolean=false;
+  
 
   constructor(private _auth:AuthServiceService,private _router:Router, ) {}
   ngOnInit() {
@@ -37,15 +38,23 @@ export class AdminLoginComponent implements OnInit {
  
 
   loginAdmin(){
+    this._auth.getAdminrole();
   
-    this._auth.login(this.User).subscribe((data)=>{
- 
-      this._router.navigate(['\home_user'])},
-      (error) => {
-        this.flag = true;
+    this._auth.adminLogin(this.User).subscribe(
+      res=>{
+        localStorage.setItem('token',res.token);
+        this._router.navigate(['\home_user'])
+      },
+      (error)=>{
+        this.flag=true;
+      }
+
+
+    )
+
     }
+    
       
       // localStorage.setItem('token',data.token)
-    )
-    }
+    
 }
