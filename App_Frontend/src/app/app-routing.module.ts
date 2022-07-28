@@ -14,20 +14,21 @@ import { Template2Component } from './template2/template2.component';
 import { Template3Component } from './template3/template3.component';
 import { Template4Component } from './template4/template4.component';
 import { UserUIComponent } from './user-ui/user-ui.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [{path:"",component: HomeComponent},
                         {path:"\login",component: LoginComponent},
                         {path:"\signup",component: SignupComponent},
                         {path:"\_temp1",component: Template1Component},
-                        {path:"\data",component: Form1Component},
-                        {path:"\_temp2",component:Template2Component},
-                        {path:"\_temp3",component:Template3Component},
-                        {path:"\_temp4",component:Template4Component},
-                        {path:"\Choose_Template",component:ChooseTemmplateComponent},
-                        {path:"\home_user",component:UserUIComponent},
-                        {path:"\Accountsettings",component:AccountsettingsComponent},
+                        {path:"\data",component: Form1Component,canActivate:[AuthGuard]},
+                        {path:"\_temp2",component:Template2Component,canActivate:[AuthGuard]},
+                        {path:"\_temp3",component:Template3Component,canActivate:[AuthGuard]},
+                        {path:"\_temp4",component:Template4Component,canActivate:[AuthGuard]},
+                        {path:"\Choose_Template",component:ChooseTemmplateComponent,canActivate:[AuthGuard]},
+                        {path:"\home_user",component:UserUIComponent,canActivate:[AuthGuard]},
+                        {path:"\Accountsettings",component:AccountsettingsComponent,canActivate:[AuthGuard]},
                         {path:"\admin",component:AdminLoginComponent},
-                      
+                        {path:"\home_admin",component:AdminUIComponent,canActivate:[AuthGuard]}
                         // {path:"\previewResume",
                         //  component:ResumePreviewComponent,
                         // children:[
